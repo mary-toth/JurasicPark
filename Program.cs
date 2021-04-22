@@ -15,21 +15,29 @@ namespace JurasicPark
 
         public string Description()
         {
-            var newDescription = ($"The dinosaur's name is {Name}. Their diet type is {DietType} and their weight is {Weight} pounds. They were acquired {WhenAcquired}. You can find this dino in enclosure number {EnclosureNumber}.");
-
-            return newDescription;
+            return ($"The dinosaur's name is {Name}. Their diet type is {DietType} and their weight is {Weight} pounds. They were acquired {WhenAcquired}. You can find this dino in enclosure number {EnclosureNumber}.");
         }
     }
-    class DinosaurDatabase
-    {
-        //not sure what goes here
-    }
+    // class DinosaurDatabase
+    // {
+    //     //not sure what goes here
+    // }
     class Program
     {
+        static void WelcomeMessage()
+        {
+            Console.WriteLine(new string('*', 26));
+            Console.WriteLine("The Jurassic Park Database");
+            Console.WriteLine(new string('*', 26));
+        }
         static void Main(string[] args)
         {
+
+            WelcomeMessage();
+
+            //Make a list of Dinosaurs-
             var dinosaurs = new List<Dinosaur>()
-             {
+             {   //not sure if I was supposed to do this part or not:
                  new Dinosaur(){Name = "Swulf", DietType = "carnivore", Weight = 65000, EnclosureNumber = 42},
                  new Dinosaur(){Name = "Yarbo", DietType = "herbivore", Weight = 48000, EnclosureNumber = 32},
                  new Dinosaur(){Name = "Dina", DietType = "herbivore", Weight = 72000, EnclosureNumber = 22},
@@ -37,7 +45,7 @@ namespace JurasicPark
 
              };
 
-            var database = new DinosaurDatabase();
+            // var database = new DinosaurDatabase();
 
             var keepGoing = true;
 
@@ -59,17 +67,18 @@ namespace JurasicPark
 
                     Console.WriteLine($"There are {foundCarn} carnivores and {foundHerb} herbivores in the dino zoo.");
                 }
-                //VIEW - show all the dinosaurs in the list, ordered by WhenAcquired. *not sure how to do this*
+                //VIEW - show all the dinosaurs in the list, ordered by WhenAcquired
                 // if there aren't any dinosaurs in the park then print out a message that there aren't any.
                 else if (choice == "view")
                 {
-                    Console.WriteLine("The dinos in the zoo:");
+                    Console.WriteLine("The dinos in the zoo, sorted by when they were acquired:");
 
                     var sorted = dinosaurs.OrderBy(dinosaur => dinosaur.WhenAcquired);
 
                     foreach (var dinosaur in dinosaurs)
                     {
                         Console.WriteLine(dinosaur.Name);
+                        Console.WriteLine(dinosaur.WhenAcquired);
                     }
 
                 }
@@ -97,7 +106,7 @@ namespace JurasicPark
                 else if (choice == "remove")
                 {
                     Console.WriteLine("Which dino do you want to delete?");
-                    var removeName = Console.ReadLine();
+                    var removeName = Console.ReadLine().ToUpper();
 
                     Dinosaur removedDino = dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == removeName);
 
