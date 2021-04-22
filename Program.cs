@@ -30,6 +30,19 @@ namespace JurasicPark
             Console.WriteLine("The Jurassic Park Database");
             Console.WriteLine(new string('*', 26));
         }
+        static string PromptForString(string prompt)
+        {
+            Console.Write(prompt);
+            var userStringInput = Console.ReadLine();
+            return userStringInput;
+        }
+
+        static int PromptForInteger(string prompt)
+        {
+            Console.Write(prompt);
+            int userIntInput = int.Parse(Console.ReadLine());
+            return userIntInput;
+        }
         static void Main(string[] args)
         {
 
@@ -88,14 +101,10 @@ namespace JurasicPark
                 {
                     var newDino = new Dinosaur();
 
-                    Console.WriteLine("Please enter the dino's name: ");
-                    newDino.Name = Console.ReadLine();
-                    Console.WriteLine("Please enter the dino's diet, either herbivore or carnivore: ");
-                    newDino.DietType = Console.ReadLine();
-                    Console.WriteLine("Please enter the dino's weight: ");
-                    newDino.Weight = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Please enter the dino's enclosure number: ");
-                    newDino.EnclosureNumber = int.Parse(Console.ReadLine());
+                    newDino.Name = PromptForString("Please enter the dino's name: ");
+                    newDino.DietType = PromptForString("Please enter the dino's diet type, either carnivore or herbivore: ");
+                    newDino.Weight = PromptForInteger("Please enter the dino's weight in pounds: ");
+                    newDino.EnclosureNumber = PromptForInteger("Please enter the dino's enclosure number: ");
 
                     dinosaurs.Add(newDino);
 
